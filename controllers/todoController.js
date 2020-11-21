@@ -17,9 +17,9 @@ exports.addTodo = async (req,res, next) => {
         console.log(req.body);
         const {name, description} = req.body
         if(name && description){
-           const newTodo = await Todo.create({name, description})
+           const newTodo = await Todo.create({name, description, created: new Date()})
            res.status(200)
-           res.json({newTodo, msg: 'Todo creado'})
+           return res.json({newTodo, msg: 'Todo creado'})
         }
         throw new Error('El todo debe tener un nombre y una descripcion')
     } catch (error) {
