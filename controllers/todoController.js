@@ -68,3 +68,14 @@ exports.toggleTodo = async (req,res, next) => {
         res.json({msg: error.message})
     }
 }
+
+exports.deleteAllTodos = async (req,res,next) => {
+    try {
+        await Todo.deleteMany()
+        res.status(200)
+        return res.json({msg: 'Todas los to-dos han sido eliminados'})
+    } catch (error) {
+        res.status(500)
+        res.json({msg: error.message})
+    }
+}
